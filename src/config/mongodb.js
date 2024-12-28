@@ -13,6 +13,10 @@ export const CONNECT_DB = async () => {
     balanceManagementDBInstance = mongoClientInstance.db(DATABASE_NAME);
 };
 
+export const CLOSE_DB = async () => {
+    await mongoClientInstance.close();
+};
+
 export const GET_DB = () => {
     if (!balanceManagementDBInstance) throw new Error("Must connect to database first!");
     return balanceManagementDBInstance;
