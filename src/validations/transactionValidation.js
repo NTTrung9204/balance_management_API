@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 import { StatusCodes } from "http-status-codes";
+import ApiError from "~/utils/ApiError";
 
 const createNew = async (req, res, next) => {
     const validTransaction = Joi.object({
@@ -16,15 +17,14 @@ const createNew = async (req, res, next) => {
 
         console.log(newTransactionData);
 
-        await validTransaction.validateAsync(newTransactionData, {abortEarly: false});
+        await validTransaction.validateAsync(newTransactionData, { abortEarly: false });
 
-        res.status(StatusCodes.CREATED).json({ message: "POST" });
+        next();
     } catch (error) {
-        console.log(error);
-        res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({ error: new Error(error).message });
+        next(new ApiError(StatusCodes.UNPROCESSABLE_ENTITY, error))
     }
 };
 
 export const transactionValidation = {
-    createNew
-}
+    createNew,
+};
