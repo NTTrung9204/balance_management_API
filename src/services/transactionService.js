@@ -10,7 +10,7 @@ const createNew = async (reqBody) => {
 
         return newTransaction;
     } catch (error) {
-        throw error;
+        throw new Error(error);
     }
 };
 

@@ -1,8 +1,10 @@
 import express from 'express'
-import {transactionRoute} from '~/routes/v1/transactionRoutes'
+import {transactionRoute} from './transactionRoutes'
+import { catalogRoute } from './catalogRoutes'
 
 const Router = express.Router()
 
-Router.use('/', transactionRoute)
+Router.use('/transaction', transactionRoute)
+Router.use('/catalog', catalogRoute)
 
 export const APIs_V1 = Router

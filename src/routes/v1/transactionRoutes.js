@@ -5,7 +5,7 @@ import { transactionController } from "~/controllers/transactionController";
 
 const Router = express.Router();
 
-Router.route("/transaction")
+Router.route("/")
     .get((req, res) => {
         res.status(StatusCodes.OK).json({ message: "GET" });
     })
