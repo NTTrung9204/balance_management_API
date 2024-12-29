@@ -1,15 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 import ApiError from "~/utils/ApiError";
+import { transactionService } from "~/services/transactionService";
 
-const createNew = (req, res, next) =>{
-    console.log(123)
+const createNew = async (req, res, next) =>{
     try {
-        res.status(StatusCodes.CREATED).json({ message: "POST SUCCESS" });
+        const newTransaction = await transactionService.createNew(req.body)
+    
+        res.status(StatusCodes.CREATED).json(newTransaction);
         
-        // throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, "test")
     } catch (error) {
-        next(error)
-        // return new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error)
+        next(new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error))
     }
 }
 
