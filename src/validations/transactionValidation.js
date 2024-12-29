@@ -6,7 +6,7 @@ import ApiError from "~/utils/ApiError";
 const createNew = async (req, res, next) => {
     const validTransaction = Joi.object({
         Type: Joi.number().required().min(-1).max(1),
-        Catalog: Joi.string().required().min(3).max(20).trim().strict(),
+        catalogId: Joi.string().required().min(3).max(30).trim().strict(),
         timeCreate: Joi.string().pattern(/^\d{2}:\d{2}\s[AP]M$/).required(),
         dateCreate: Joi.string().pattern(/^\d{2}\/\d{2}\/\d{4}$/).required(),
         amount: Joi.number().required().min(500),
