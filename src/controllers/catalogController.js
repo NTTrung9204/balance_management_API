@@ -4,7 +4,12 @@ import { catalogService } from "~/services/catalogService";
 
 const createNew = async (req, res, next) =>{
     try {
-        const newCatalog = await catalogService.createNewCatalog(req.body)
+        const newCatalogData = req.body;
+        if(await catalogService.checkExistCatalog(newCatalogData.catalogName)){
+            return next(new ApiError(StatusCodes.CONFLICT, "Catalog name has already existed!"))
+        }
+
+        const newCatalog = await catalogService.createNewCatalog(newCatalogData)
     
         res.status(StatusCodes.CREATED).json(newCatalog);
         
