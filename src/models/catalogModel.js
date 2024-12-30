@@ -1,5 +1,6 @@
 import Joi from "joi";
 import { GET_DB } from "~/config/mongodb";
+import { ObjectId } from "mongodb";
 
 const CATALOG_COLLECTION_NAME = "catalogs";
 const CATALOG_COLLECTION_SCHEMA = Joi.object({
@@ -21,7 +22,7 @@ const createNew = async (data) =>{
 const findById = async (catalogId) =>{
     try {
         return await GET_DB().collection(CATALOG_COLLECTION_NAME).findOne({
-            _id: catalogId
+            _id: new ObjectId(catalogId)
         })
     } catch (error) {
         throw new Error(error)
