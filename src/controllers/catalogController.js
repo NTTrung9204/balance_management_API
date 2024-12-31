@@ -18,6 +18,17 @@ const createNew = async (req, res, next) =>{
     }
 }
 
+const getCatalog = async (req, res, next) =>{
+    try {
+        const listCatalog = await catalogService.getListCatalog()
+        console.log(listCatalog)
+        res.status(StatusCodes.OK).json(listCatalog);
+    } catch (error) {
+        next(new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error))
+    }
+}
+
 export const catalogController = {
-    createNew
+    createNew,
+    getCatalog
 }

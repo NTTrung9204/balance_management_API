@@ -20,7 +20,16 @@ const checkExistCatalog = async (catalogName) =>{
     }
 }
 
+const getListCatalog = async ()=>{
+    try {
+        return await catalogModel.getListCatalog();
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 export const catalogService = {
     createNewCatalog,
-    checkExistCatalog
+    checkExistCatalog,
+    getListCatalog
 };

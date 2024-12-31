@@ -37,10 +37,19 @@ const findByName = async (catalogName) =>{
     }
 }
 
+const getListCatalog = async ()=>{
+    try {
+        return await GET_DB().collection(CATALOG_COLLECTION_NAME).find({}).toArray()
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
 export const catalogModel = {
     createNew,
     findById,
     findByName,
+    getListCatalog,
     CATALOG_COLLECTION_NAME,
     CATALOG_COLLECTION_SCHEMA,
 };
