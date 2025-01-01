@@ -8,4 +8,7 @@ Router.route("/")
     .get(catalogController.getCatalog)
     .post(catalogValidation.createNew, catalogController.createNew);
 
+Router.route("/statistics")
+    .get(catalogController.getCatalogStatistics)
+
 export const catalogRoute = Router;

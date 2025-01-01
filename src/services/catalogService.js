@@ -28,8 +28,17 @@ const getListCatalog = async ()=>{
     }
 }
 
+const getCatalogStatistics = async ()=>{
+    try {
+        return await catalogModel.getCatalogStatistics();
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 export const catalogService = {
     createNewCatalog,
     checkExistCatalog,
-    getListCatalog
+    getListCatalog,
+    getCatalogStatistics
 };
